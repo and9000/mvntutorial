@@ -9,7 +9,7 @@ public class App {
 
 	public static String getHelloWorld() {
 
-		return "Hello World 3";
+		return "Hello World";
 
 	}
 
