@@ -1,5 +1,5 @@
 node {
   def mvnHome = tool 'Maven 3.x'
-  sh "cd ${WORKSPACE}"
+  sh "cd ${env.WORKSPACE}"
   sh "${mvnHome}/bin/mvn clean install"
 }
