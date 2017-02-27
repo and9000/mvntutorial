@@ -1,5 +1,27 @@
-node {
-  def mvnHome = tool 'Maven 3.x'
-  checkout scm
-  sh "${mvnHome}/bin/mvn clean install"
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                withMaven(
+                    maven: 'Maven 3.x') {
+
+                    // Run the maven build
+                    sh "mvn clean install"
+                }
+            }
+        }
+        stage('Test'){
+            steps {
+                withMaven(
+                    maven: 'Maven 3.x') {
+
+                    // Run the maven test
+                    sh 'mvn test'
+                }
+
+            }
+        }
+    }
 }
