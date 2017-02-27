@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                checkout scm
                 withMaven(
                     maven: 'Maven 3.x') {
 
@@ -12,7 +13,7 @@ pipeline {
                 }
             }
         }
-        stage('Test'){
+        stage('Tests'){
             steps {
                 withMaven(
                     maven: 'Maven 3.x') {
