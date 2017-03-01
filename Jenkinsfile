@@ -1,27 +1,22 @@
 pipeline {
     agent any
-
+    tools {
+        maven 'Maven 3.x'
+    }
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
                 checkout scm
-                withMaven(
-                    maven: 'Maven 3.x') {
-
-                    // Run the maven build
-                    sh "mvn clean install"
-                }
+            }
+        }
+        stage('Build') {
+            steps {
+                sh "mvn clean install"
             }
         }
         stage('Tests'){
             steps {
-                withMaven(
-                    maven: 'Maven 3.x') {
-
-                    // Run the maven test
-                    sh 'mvn test'
-                }
-
+                sh 'mvn test'
             }
         }
     }
